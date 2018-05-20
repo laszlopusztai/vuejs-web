@@ -7,17 +7,16 @@
 <body>
 
     <div id="app-7">
-        <p>{{ rawHTML  }}</p>
-        <p>Using v-html directive: <span v-html="rawHTML"></span></p>
+        <button v-bind:disabled="isButtonDisabled">Button</button>
+        <!--If isButtonDisabled has the value of null, undefined, or false,-->
+        <!--the disabled attribute will not even be included in the rendered <button> element.-->
     </div>
 
 <script>
-    var rawHTML = '<span style="color: red">This should be red</span>'
-
     var app7 = new Vue({
         el: '#app-7',
         data: {
-            rawHTML : rawHTML,
+            isButtonDisabled : false,
         },
     })
 </script>
