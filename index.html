@@ -3,26 +3,41 @@
 <head>
     <title>My first Vue app</title>
     <script src="https://unpkg.com/vue"></script>
+    <style> label { display: block; margin: 0 0 1em 0; }</style>
 </head>
 <body>
 
-    <div id="example">
-        <p>Original message: "{{ message }}"</p>
-        <p>Computed reversed message: "{{ reversedMessage }}"</p>
+    <div id="app">
+        <label>km: <input type="text" v-model="km2"></label><br/>
+        <label>cm: <input type="text" v-model="cm"></label><br/>
+        <label>mm: <input type="text" v-model="mm"></label><br/>
     </div>
 
 <script>
-    var vm = new Vue({
-        el: '#example',
+    new Vue({
+        el: '#app',
         data: {
-            message: 'Hello'
+            km2: 0,
+            cm: 0,
+            mm: 0
         },
-        computed: {
-            reversedMessage: function () {
-                return this.message.split('').reverse().join('')
+        watch: {
+            km2: function (val) {
+                this.km2 = val;
+                this.cm = val * 100000;
+                this.mm = val * 1000000;
+            },
+            cm: function (val) {
+                this.km2 = val / 100000;
+                this.cm = val;
+                this.mm = val * 10;
+            },
+            mm: function (val) {
+                this.km2 = val / 1000000;
+                this.cm = val / 10;
             }
         }
-    })
+    });
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
